@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1">
+	<!-- TODO Add Nodes -->
+</HBox>
+<AnchorPane prefHeight="150.0" prefWidth="300.0"
+	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+	<children>
+		<Label layoutX="30.0" layoutY="25.0" prefHeight="15.0"
+			prefWidth="38.0" text="아이디" />
+		<TextField layoutX="88.0" layoutY="21.0" />
+		<Label layoutX="15.0" layoutY="66.0" prefHeight="7.0"
+			prefWidth="60.0" text=" 패스워드" />
+		<PasswordField layoutX="89.0" layoutY="61.0" />
+		<Button layoutX="186.0" layoutY="103.0" mnemonicParsing="false"
+			text="취소" />
+		<Button layoutX="91.0" layoutY="103.0" mnemonicParsing="false"
+			text="확인" />
+	</children>
+</AnchorPane>
+
