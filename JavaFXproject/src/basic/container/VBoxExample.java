@@ -1,6 +1,8 @@
 package basic.container;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,10 +20,11 @@ public class VBoxExample extends Application {//875page이것이자바다
 	public void start(Stage primaryStage) throws Exception {
 		VBox root = new VBox();
 		root.setPadding(new Insets(10,10,10,10));
+		
 		ImageView iv = new ImageView();
-		iv.setFitWidth(200);
+		iv.setFitWidth(300);
 		iv.setPreserveRatio(true);
-		iv.setImage(new Image("/basic/images/다운로드.jpg"));
+		iv.setImage(new Image("/basic/images/fruit1.jpg"));
 		
 		HBox hbox=new HBox();
 		hbox.setAlignment(Pos.CENTER);//가운데정렬
@@ -30,12 +33,38 @@ public class VBoxExample extends Application {//875page이것이자바다
 		Button btwPrev = new Button();
 		btwPrev.setText("이전");
 		Button btwNext = new Button("다음");
+		
+		
 		HBox.setHgrow(btwNext,Priority.ALWAYS);
 		btwNext.setMaxWidth(Double.MAX_VALUE);
 		hbox.getChildren().add(btwPrev);
 		hbox.getChildren().add(btwNext);
 		VBox.setMargin(hbox,new Insets(10));
 		
+		//이벤트 핸들러를 해당컨드롤에 등록.
+		btwPrev.setOnAction(new EventHandler<ActionEvent>() {
+				int loc = 1;
+			@Override
+			public void handle(ActionEvent arg0) {
+				if(loc==1)
+					loc =8;
+				iv.setImage(new Image("/basic/images/fruit" + loc-- + ".jpg"));
+			}
+			
+		});
+		btwNext.setOnAction(new EventHandler<ActionEvent>() {
+			int loc=1;
+			@Override
+			public void handle(ActionEvent ae) {
+				if(loc==8)
+					loc = 1;
+				iv.setImage(new Image("/basic/images/fruit" + loc++ + ".jpg"));
+				
+			}
+		});
+	//  btwNext.setOnAction((ae)->{
+	//	System.out.println(ae.getSource());
+	//	});
 		root.getChildren().add(iv);
 		root.getChildren().add(hbox);
 		///컨테이너를 만듬
