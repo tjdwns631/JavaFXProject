@@ -21,22 +21,22 @@ public class Student {
 	public void setName(String name) {
 		this.name.set(name);
 	}
-	public int getkorean() {
+	public int getKorean() {
 		return this.korean.get();
 	}
 	public void setKorean(int korean) {
 		this.korean.set(korean);
 	}
-	public int getmath() {
+	public int getMath() {
 		return this.math.get();
 	}
-	public void setmath(int math) {
+	public void setMath(int math) {
 		this.math.set(math);
 	}
-	public int getenglish() {
+	public int getEnglish() {
 		return this.english.get();
 	}
-	public void setenglish(int english) {
+	public void setEnglish(int english) {
 		this.english.set(english);
 	}
 }

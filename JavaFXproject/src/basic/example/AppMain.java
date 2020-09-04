@@ -17,6 +17,7 @@ public class AppMain extends Application {
 		
 		RootController controller =loader.getController();
 		
+		controller.setPrimaryStage(primaryStage);
 		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
