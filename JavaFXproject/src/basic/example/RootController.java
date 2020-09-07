@@ -2,6 +2,10 @@ package basic.example;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -31,7 +35,7 @@ public class RootController implements Initializable {
 	@FXML
 	TableView<Student> tableView;
 	@FXML
-	Button btnAdd, btnBarChart;
+	Button btnAdd, btnBarChart, selectbutton;
 	ObservableList<Student> list;
 	Stage primaryStage;
 
@@ -57,21 +61,18 @@ public class RootController implements Initializable {
 		list = FXCollections.observableArrayList();
 		// 값을 담는건 add화면에서 list에다 성적 저장
 		tableView.setItems(list);
+		
 
 		// 추가버튼.이벤트추가 매개값이 이벤트핸들러
 		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent arg0) {
 				handleBtnAddAction();// 밑에서 호출
-
 			}
 		});
 		// 차트버튼
 		btnBarChart.setOnAction(e -> handleBtnChartAction());
-
 		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.getClickCount() == 2) {
@@ -141,10 +142,6 @@ public class RootController implements Initializable {
 		btnClose.setLayoutY(184);
 
 		
-		
-		
-		
-
 		btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -171,9 +168,6 @@ public class RootController implements Initializable {
 			}
 			
 		});
-		
-	
-
 		// 이름 기준으로 국어 수학 영어 점수 화면에 입력
 		for (Student stu : list) {
 			if (stu.getName().equals(name)) {
@@ -191,6 +185,33 @@ public class RootController implements Initializable {
 		stage.show();
 	}
 	
+//	public ObservableList<Student> getStulist() {
+//	      Connection conn = ConnectionDB.getDB();
+//	      String sql = "select * from student";
+//	      ObservableList<Student> list2 = FXCollections.observableArrayList();
+//
+//	      try {
+//	         PreparedStatement pstmt = conn.prepareStatement(sql);
+//	         ResultSet rs = pstmt.executeQuery();
+//	         while (rs.next()) {
+//	            Student stu = new Student(rs.getString("name"), rs.getInt("korean"),
+//	                  rs.getInt("math"), rs.getInt("engilsh"));
+//	            list2.add(stu);
+//	         }
+//	         ;
+//	         return list2;
+//	      } catch (SQLException e) {
+//	         e.printStackTrace();
+//	      } finally {
+//	         try {
+//	            conn.close();
+//	         } catch (SQLException e) {
+//	            e.printStackTrace();
+//	         }
+//	      }
+//	      return list2;
+//	   }
+//
 
 	public void handleBtnChartAction() {
 		Stage stage = new Stage(StageStyle.UTILITY);
@@ -277,8 +298,10 @@ public class RootController implements Initializable {
 					TextField txtKorean = (TextField) parent.lookup("#txtKorean");
 					TextField txtMath = (TextField) parent.lookup("#txtMath");
 					TextField txtEnglish = (TextField) parent.lookup("#txtEnglish");
-					Student student = new Student(txtName.getText(), Integer.parseInt(txtKorean.getText()),
-							Integer.parseInt(txtMath.getText()), Integer.parseInt(txtEnglish.getText()));
+					Student student = new Student(txtName.getText(),
+							Integer.parseInt(txtKorean.getText()),
+							Integer.parseInt(txtMath.getText()),
+							Integer.parseInt(txtEnglish.getText()));
 
 					list.add(student);
 
