@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+
+<BorderPane prefHeight="217.0" prefWidth="211.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<padding>
+		<Insets topRightBottomLeft="20" />
+	</padding>
+	<center>
+		<GridPane hgap="10" vgap="10" BorderPane.alignment="CENTER">
+   <children>
+   			<Label prefWidth="50" text="날짜 " GridPane.columnIndex="0" GridPane.rowIndex="0" />
+   			<Label prefWidth="50" text="시간 " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+   			<Label prefWidth="50" text="이름 " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+   			<Label prefWidth="50" text="시술 " GridPane.columnIndex="0" GridPane.rowIndex="3" />
+   			<Label prefWidth="50" text="번호 " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+   			<DatePicker  fx:id="dateExit" layoutX="296" layoutY="100" promptText="날짜를 선택하세요"
+   			prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="0"></DatePicker>
+   			<TextField id="txtTime" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   			<TextField id="txtName" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   			<TextField id="txtPro" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   			<TextField id="txtNum" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   </children>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+		</GridPane>
+	</center>
+	<bottom>
+		<HBox prefHeight="24.0" prefWidth="123.0" spacing="20" BorderPane.alignment="CENTER">
+			<BorderPane.margin>
+				<Insets topRightBottomLeft="10" />
+			</BorderPane.margin>
+			<children>
+				<Button id="btnFormAdd" text="예약등록" />
+			</children>
+		</HBox>
+	</bottom>
+</BorderPane>

@@ -35,33 +35,32 @@ public class RootController implements Initializable {
 	@FXML
 	TableView<Student> tableView;
 	@FXML
-	Button btnAdd, btnBarChart, selectbutton;
+	Button btnAdd, btnBarChart;
 	ObservableList<Student> list;
 	Stage primaryStage;
-
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
 		TableColumn<Student, ?> tc = tableView.getColumns().get(0);// 첫번째 칼럼 name칼럼
 		tc.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+		tableView.getColumns().add(tc);
 		tc = tableView.getColumns().get(1);
 		tc.setCellValueFactory(new PropertyValueFactory<>("korean"));
-
+		tableView.getColumns().add(tc);
 		tc = tableView.getColumns().get(2);
 		tc.setCellValueFactory(new PropertyValueFactory<>("math"));
-
+		tableView.getColumns().add(tc);
 		tc = tableView.getColumns().get(3);
 		tc.setCellValueFactory(new PropertyValueFactory<>("english"));
+		tableView.getColumns().add(tc);
 		// 데이터 가져올떄 setItems
 		list = FXCollections.observableArrayList();
 		// 값을 담는건 add화면에서 list에다 성적 저장
-		tableView.setItems(list);
 		
+		tableView.setItems(getStulist());
 
 		// 추가버튼.이벤트추가 매개값이 이벤트핸들러
 		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
@@ -185,33 +184,31 @@ public class RootController implements Initializable {
 		stage.show();
 	}
 	
-//	public ObservableList<Student> getStulist() {
-//	      Connection conn = ConnectionDB.getDB();
-//	      String sql = "select * from student";
-//	      ObservableList<Student> list2 = FXCollections.observableArrayList();
-//
-//	      try {
-//	         PreparedStatement pstmt = conn.prepareStatement(sql);
-//	         ResultSet rs = pstmt.executeQuery();
-//	         while (rs.next()) {
-//	            Student stu = new Student(rs.getString("name"), rs.getInt("korean"),
-//	                  rs.getInt("math"), rs.getInt("engilsh"));
-//	            list2.add(stu);
-//	         }
-//	         ;
-//	         return list2;
-//	      } catch (SQLException e) {
-//	         e.printStackTrace();
-//	      } finally {
-//	         try {
-//	            conn.close();
-//	         } catch (SQLException e) {
-//	            e.printStackTrace();
-//	         }
-//	      }
-//	      return list2;
-//	   }
-//
+	public ObservableList<Student> getStulist() {
+	      Connection conn = ConnectionDB.getDB();
+	      String sql = "select * from student";
+	      ObservableList<Student> list2 = FXCollections.observableArrayList();
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery();
+	         while (rs.next()) {
+	            Student stu = new Student(rs.getString("name"), rs.getInt("korean"),
+	                  rs.getInt("math"), rs.getInt("engilsh"));
+	            list2.add(stu);
+	         };
+	         return list2;
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	      return list2;
+	   }
+
 
 	public void handleBtnChartAction() {
 		Stage stage = new Stage(StageStyle.UTILITY);

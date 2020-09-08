@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="basic.database.console.BoardController">
+	<center>
+		<TableView fx:id="tableView" prefWidth="400" prefHeight="200" >
+			<columns>
+			    <TableColumn prefWidth="100" resizable="false" text="날짜" />
+				<TableColumn prefWidth="100" resizable="false" text="시간" />
+				<TableColumn prefWidth="100" resizable="false" text="이름" />
+				<TableColumn prefWidth="100" resizable="false" text="시술" />
+			</columns>
+		</TableView>
+	</center>
+	<bottom>
+		<HBox prefHeight="50" alignment="CENTER">
+			<children>
+				<Button fx:id="btnAdd" text="예약하기" />			
+			</children>
+		</HBox>
+	</bottom>
+</BorderPane>
+
