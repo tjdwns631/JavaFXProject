@@ -2,6 +2,7 @@ package basic.database.console;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -29,11 +30,8 @@ public class BoardController implements Initializable {
 	TableView<Board> tableView;
 	@FXML
 	Button btnAdd;
-	@FXML
-	DatePicker dateExit;
-	
-	Stage primaryStage;
 	ObservableList<Board> list;
+	Stage primaryStage;
 	public void setPrimaryStage(Stage primaryStage) {
 	}
 
@@ -68,83 +66,48 @@ public class BoardController implements Initializable {
 			}
 		});
 	}
-	public void handleDoubleClickAction(String name) {
-		
-	
-		
+	public void handleDoubleClickAction(String name) {//예약 정보
 		Stage stage = new Stage(StageStyle.UTILITY);
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(btnAdd.getScene().getWindow());
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("BoardImpor.fxml"));
 	         Scene scene = new Scene(parent);
-	         stage.setTitle("예약정보");
+	         stage.setTitle("예약");
 	         stage.setScene(scene);
 	         stage.show();
-	         TextField txtDate = (TextField) parent.lookup("#txtDate");
+	         DatePicker txtDate = (DatePicker) parent.lookup("#dateExit");
 	         TextField txtTime = (TextField) parent.lookup("#txtTime");
 	         TextField txtName = (TextField) parent.lookup("#txtName");
 	         TextField txtPro = (TextField) parent.lookup("#txtPro");
 	         TextField txtNum = (TextField) parent.lookup("#txtNum");
-	         txtDate.setEditable(false);
-	         txtTime.setEditable(false);
-	         txtName.setEditable(false);
-	         txtPro.setEditable(false);
-	         txtNum.setEditable(false); 
 	         for(Board boardlist : list) {
 	        	 if(boardlist.getName().equals(name)) {
-	        		 txtDate.setText(String.valueOf(boardlist.getDate()));
+	        		 txtDate.setValue(LocalDate.parse(boardlist.getDate()));
 	        		 txtTime.setText(String.valueOf(boardlist.getTime()));
 	        		 txtName.setText(String.valueOf(boardlist.getName()));
 	        		 txtPro.setText(String.valueOf(boardlist.getPro()));
 	        		 txtNum.setText(String.valueOf(boardlist.getNum()));
 	        	 }
-	         }
-	         Button btnUpdate = (Button) parent.lookup("#btnUpdate");//예약수정
-	         btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					Stage stage = new Stage(StageStyle.UTILITY);
-					stage.initModality(Modality.WINDOW_MODAL);
-					stage.initOwner(btnAdd.getScene().getWindow());
-					try {
-						Parent parent = FXMLLoader.load(getClass().getResource("BoardUpdate.fxml"));
-				         Scene scene = new Scene(parent);
-				         stage.setTitle("예약수정");
-				         stage.setScene(scene);
-				         stage.show();
-				         for(Board boardlist : list) {
-				        	 if(boardlist.getName().equals(name)) {
-				        		 txtDate.setText(String.valueOf(boardlist.getDate()));
-				        		 txtTime.setText(String.valueOf(boardlist.getTime()));
-				        		 txtName.setText(String.valueOf(boardlist.getName()));
-				        		 txtPro.setText(String.valueOf(boardlist.getPro()));
-				        		 txtNum.setText(String.valueOf(boardlist.getNum()));
-				        	 }
-				         }
-				         TextField txtDate = (TextField) parent.lookup("#txtDate");
-				         TextField txtTime = (TextField) parent.lookup("#txtTime");
-				         TextField txtName = (TextField) parent.lookup("#txtName");
-				         TextField txtPro = (TextField) parent.lookup("#txtPro");
-				         TextField txtNum = (TextField) parent.lookup("#txtNum");
-				         
-				         for(int i=0; i<list.size(); i++) {
+	        	 
+	         } 
+	         Button btnUpdate = (Button) parent.lookup("#btnUpdate");
+	         	btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						for(int i=0; i<list.size(); i++) {
 				        	 if(list.get(i).getName().equals(name)) {
-				        		 Board board = new Board(Integer.parseInt(txtDate.getText()),
-				        				 Integer.parseInt(txtTime.getText()),
+				        		 Board board = new Board(txtDate.getValue().toString(),
+				        				 txtTime.getText(),
 				        				 txtName.getText(),
 				        				 txtPro.getText(),
 				        				 txtNum.getText());
 				        		 list.set(i, board);
-				        		 
-				        	 }
-				         }
-				         stage.close();
-					}catch (IOException e) {
-						e.printStackTrace();
-					 }
-				}
-			});
+				        	 } 
+				         }stage.close(); 					
+					}
+					
+				});
 	         Button btnDel = (Button) parent.lookup("#btnDel");
 	         btnDel.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
@@ -153,16 +116,16 @@ public class BoardController implements Initializable {
 						if(list.get(i).getName().equals(name)) {
 							list.remove(i);
 						}
-					}
-					stage.close();
+					}	
+				stage.close();
 				}
+				
 			});
-	         
-	       
 	}catch (IOException e) {
 		e.printStackTrace();
 	 }
 	}
+	///////////////////////////////////////////////////////////////////////////
 	public void handlebtnAddAction() {
 		Stage stage = new Stage(StageStyle.UTILITY);
 		stage.initModality(Modality.WINDOW_MODAL);
@@ -177,14 +140,14 @@ public class BoardController implements Initializable {
 	         btnFormAdd.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					TextField txtDate = (TextField) parent.lookup("#dateExit");
+					DatePicker txtDate = (DatePicker) parent.lookup("#dateExit");
 			         TextField txtTime = (TextField) parent.lookup("#txtTime");
 			         TextField txtName = (TextField) parent.lookup("#txtName");
 			         TextField txtPro = (TextField) parent.lookup("#txtPro");
 			         TextField txtNum = (TextField) parent.lookup("#txtNum");
 			         
-			         Board board = new Board(dateExit.getValue().toString()),
-				             				Integer.parseInt(txtTime.getText()),
+			         Board board = new Board(txtDate.getValue().toString(),
+				             				txtTime.getText(),
 				             					txtName.getText(),
 				                                txtPro.getText(),
 				                                txtNum.getText());

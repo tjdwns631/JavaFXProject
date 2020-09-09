@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+	prefHeight="200" prefWidth="300">
+	<center>
+		<VBox >
+
+			<ComboBox fx:id="comboPublic" layoutX="67.0"
+				prefHeight="32" prefWidth="132" promptText="선택">
+				<items>
+					<FXCollections fx:factory="observableArrayList">
+						<String fx:value="10:00" />
+						<String fx:value="10:30" />
+						<String fx:value="11:00" />
+						<String fx:value="11:30" />
+						<String fx:value="12:00" />
+						<String fx:value="12:30" />
+						<String fx:value="13:00" />
+						<String fx:value="13:30" />
+						<String fx:value="14:00" />
+						<String fx:value="14:30" />
+						<String fx:value="15:00" />
+						<String fx:value="15:30" />
+						<String fx:value="16:00" />
+						<String fx:value="16:30" />
+						<String fx:value="17:00" />
+						<String fx:value="17:30" />
+						<String fx:value="18:00" />
+						<String fx:value="18:30" />
+						<String fx:value="19:00" />
+						<String fx:value="19:30" />
+						<String fx:value="20:00" />
+					</FXCollections>
+				</items>
+			</ComboBox>
+
+		</VBox>
+	</center>
+</BorderPane>
+
