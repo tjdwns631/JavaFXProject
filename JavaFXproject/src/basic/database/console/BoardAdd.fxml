@@ -9,6 +9,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.*?>
 
 <BorderPane prefHeight="217.0" prefWidth="211.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<padding>
@@ -24,7 +27,35 @@
    			<Label prefWidth="50" text="번호 " GridPane.columnIndex="0" GridPane.rowIndex="4" />
    			<DatePicker  fx:id="dateExit" layoutX="296" layoutY="100" promptText="날짜를 선택하세요"
    			prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="0"></DatePicker>
-   			<TextField id="txtTime" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   			<ComboBox fx:id="comboPublic" layoutX="67.0"
+				prefHeight="32" prefWidth="132" promptText="선택"
+				GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<items>
+					<FXCollections fx:factory="observableArrayList">
+						<String fx:value="10:00" />
+						<String fx:value="10:30" />
+						<String fx:value="11:00" />
+						<String fx:value="11:30" />
+						<String fx:value="12:00" />
+						<String fx:value="12:30" />
+						<String fx:value="13:00" />
+						<String fx:value="13:30" />
+						<String fx:value="14:00" />
+						<String fx:value="14:30" />
+						<String fx:value="15:00" />
+						<String fx:value="15:30" />
+						<String fx:value="16:00" />
+						<String fx:value="16:30" />
+						<String fx:value="17:00" />
+						<String fx:value="17:30" />
+						<String fx:value="18:00" />
+						<String fx:value="18:30" />
+						<String fx:value="19:00" />
+						<String fx:value="19:30" />
+						<String fx:value="20:00" />
+					</FXCollections>
+				</items>
+			</ComboBox>
    			<TextField id="txtName" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    			<TextField id="txtPro" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    			<TextField id="txtNum" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="4" />

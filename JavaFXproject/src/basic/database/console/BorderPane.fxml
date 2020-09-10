@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
-	prefHeight="200" prefWidth="300">
+	prefHeight="32" prefWidth="132">
 	<center>
 		<VBox >
-
 			<ComboBox fx:id="comboPublic" layoutX="67.0"
 				prefHeight="32" prefWidth="132" promptText="선택">
 				<items>

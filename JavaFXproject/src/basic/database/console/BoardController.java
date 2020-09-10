@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import javax.swing.plaf.basic.BasicTreeUI.SelectionModelPropertyChangeHandler;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +34,8 @@ public class BoardController implements Initializable {
 	TableView<Board> tableView;
 	@FXML
 	Button btnAdd;
+	@FXML
+	ComboBox<String> comboPublic;
 	ObservableList<Board> list;
 	Stage primaryStage;
 	public void setPrimaryStage(Stage primaryStage) {
@@ -59,14 +65,17 @@ public class BoardController implements Initializable {
 			@Override
 			public void handle(MouseEvent event) {
 				if(event.getClickCount()==2) {
-					String selectedName = 
-					tableView.getSelectionModel().getSelectedItem().getName();
-					handleDoubleClickAction(selectedName);	
+					int selectedName = 
+					tableView.getSelectionModel().getSelectedIndex();
+					if(selectedName >=0) {
+					handleDoubleClickAction(selectedName);
+					}
 				}
+				
 			}
 		});
 	}
-	public void handleDoubleClickAction(String name) {//예약 정보
+	public void handleDoubleClickAction(int ida) {//예약 정보
 		Stage stage = new Stage(StageStyle.UTILITY);
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(btnAdd.getScene().getWindow());
@@ -77,33 +86,36 @@ public class BoardController implements Initializable {
 	         stage.setScene(scene);
 	         stage.show();
 	         DatePicker txtDate = (DatePicker) parent.lookup("#dateExit");
-	         TextField txtTime = (TextField) parent.lookup("#txtTime");
+	         ComboBox txtTime = (ComboBox) parent.lookup("#comboPublic");
 	         TextField txtName = (TextField) parent.lookup("#txtName");
 	         TextField txtPro = (TextField) parent.lookup("#txtPro");
 	         TextField txtNum = (TextField) parent.lookup("#txtNum");
+	         
+		
 	         for(Board boardlist : list) {
-	        	 if(boardlist.getName().equals(name)) {
+	        	 
+//	        	 if(boardlist.getName().equals(name)) {
 	        		 txtDate.setValue(LocalDate.parse(boardlist.getDate()));
-	        		 txtTime.setText(String.valueOf(boardlist.getTime()));
+	        		 txtTime.setValue(String.valueOf(boardlist.getTime()));
 	        		 txtName.setText(String.valueOf(boardlist.getName()));
 	        		 txtPro.setText(String.valueOf(boardlist.getPro()));
 	        		 txtNum.setText(String.valueOf(boardlist.getNum()));
 	        	 }
 	        	 
-	         } 
+//	         } 
 	         Button btnUpdate = (Button) parent.lookup("#btnUpdate");
 	         	btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
 						for(int i=0; i<list.size(); i++) {
-				        	 if(list.get(i).getName().equals(name)) {
+//				        	 if(list.get(i).getName().equals(name)) {
 				        		 Board board = new Board(txtDate.getValue().toString(),
-				        				 txtTime.getText(),
+				        				 txtTime.getValue().toString(),
 				        				 txtName.getText(),
 				        				 txtPro.getText(),
 				        				 txtNum.getText());
 				        		 list.set(i, board);
-				        	 } 
+//				        	 } 
 				         }stage.close(); 					
 					}
 					
@@ -112,11 +124,12 @@ public class BoardController implements Initializable {
 	         btnDel.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					for(int i = 0; i<list.size(); i++) {
-						if(list.get(i).getName().equals(name)) {
-							list.remove(i);
-						}
-					}	
+//					for(int i = 0; i<list.size(); i++) {
+//						if(list.get(i).getName().equals(name)) {
+//							list.remove(i);
+//						}
+						list.remove(ida);
+//					}	
 				stage.close();
 				}
 				
@@ -141,13 +154,13 @@ public class BoardController implements Initializable {
 				@Override
 				public void handle(ActionEvent event) {
 					DatePicker txtDate = (DatePicker) parent.lookup("#dateExit");
-			         TextField txtTime = (TextField) parent.lookup("#txtTime");
+					ComboBox txtTime = (ComboBox) parent.lookup("#comboPublic");
 			         TextField txtName = (TextField) parent.lookup("#txtName");
 			         TextField txtPro = (TextField) parent.lookup("#txtPro");
 			         TextField txtNum = (TextField) parent.lookup("#txtNum");
 			         
 			         Board board = new Board(txtDate.getValue().toString(),
-				             				txtTime.getText(),
+				             				txtTime.getValue().toString(),
 				             					txtName.getText(),
 				                                txtPro.getText(),
 				                                txtNum.getText());
