@@ -10,11 +10,11 @@ public class BoardMain extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardList.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
 		Parent root = loader.load();
 		//parent 모든 타입을 받을수있음
-		BoardController controller =loader.getController();
-		controller.setPrimaryStage(primaryStage);
+//		BoardController controller =loader.getController();
+//		controller.setPrimaryStage(primaryStage);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("예약 리스트");
