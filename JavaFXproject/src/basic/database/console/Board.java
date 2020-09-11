@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Board {
-	SimpleStringProperty date;
+	SimpleStringProperty dat;
 	SimpleStringProperty time;
 	SimpleStringProperty name;
 	SimpleStringProperty pro;
@@ -13,9 +13,9 @@ public class Board {
 	public Board() {
 		
 	}
-	public Board(String date, String time,String name,String pro ,String num) {
+	public Board(String dat, String time,String name,String pro ,String num) {
 		super();
-		this.date =new SimpleStringProperty(date);
+		this.dat =new SimpleStringProperty(dat);
 		this.time =new SimpleStringProperty(time);
 		this.name =new SimpleStringProperty(name);
 		this.pro =new SimpleStringProperty(pro);
@@ -30,12 +30,12 @@ public class Board {
 		this.num.set(num);
 	}
 
-	public String getDate() {
-		return this.date.get();
+	public String getDat() {
+		return this.dat.get();
 	}
 
-	public void setDate(String date) {
-		this.date.set(date);
+	public void setDat(String dat) {
+		this.dat.set(dat);
 	}
 
 	public String getTime() {
