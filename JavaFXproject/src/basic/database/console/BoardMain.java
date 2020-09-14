@@ -13,11 +13,11 @@ public class BoardMain extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
 		Parent root = loader.load();
 		//parent 모든 타입을 받을수있음
-//		BoardController controller =loader.getController();
-//		controller.setPrimaryStage(primaryStage);
+		loginConlloer controller =loader.getController();
+		controller.setPrimaryStage(primaryStage);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("예약 리스트");
+		primaryStage.setTitle("헤어 쯔앙");
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		

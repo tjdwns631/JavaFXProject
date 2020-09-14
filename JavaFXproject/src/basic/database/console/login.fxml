@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basic.database.console.loginConlloer">
    <children>
       <Label layoutX="94.0" layoutY="25.0" prefHeight="111.0" prefWidth="328.0" text="헤어 쯔앙 " textFill="#d02222">
          <font>
@@ -17,9 +17,9 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <TextField layoutX="173.0" layoutY="245.0" promptText="UserName" />
-      <Button layoutX="172.0" layoutY="365.0" mnemonicParsing="false" text="login" />
-      <Button layoutX="256.0" layoutY="365.0" mnemonicParsing="false" text="SIgn in" />
-      <PasswordField layoutX="173.0" layoutY="295.0" promptText="PassWord" />
+      <TextField fx:id ="id" layoutX="173.0" layoutY="245.0" promptText="UserName" text="sjun" />
+      <Button fx:id="lg" layoutX="172.0" layoutY="365.0" mnemonicParsing="false" text="login" />
+      <Button fx:id ="si" layoutX="256.0" layoutY="365.0" mnemonicParsing="false" text="Sign in" />
+      <PasswordField fx:id="pass" layoutX="173.0" layoutY="295.0" promptText="PassWord" text="sjun" />
    </children>
 </AnchorPane>

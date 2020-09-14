@@ -121,8 +121,7 @@ public class BoardController implements Initializable {
 						rs.getString("pro"),
 						rs.getString("num"));
 				list2.add(bor);
-			}
-			;
+			};
 			return list2;
 		} catch (SQLException e) {
 			e.printStackTrace();
