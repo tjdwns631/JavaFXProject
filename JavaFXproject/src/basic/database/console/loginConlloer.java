@@ -54,7 +54,6 @@ public class loginConlloer implements Initializable {
 			while (rs.next()) {
 				member mem = new member(rs.getString("ID"),
 						rs.getString("PASS"));
-				System.out.println(mem.getId());
 				list.add(mem);
 			};
 		} catch (SQLException e1) {
@@ -62,7 +61,6 @@ public class loginConlloer implements Initializable {
 		}
 		for(member m : list) {
 			if(m.getId().equals(id.getText())&& m.getPass().equals(pass.getText())) {
-				System.out.println("d");
 				try {	
 					Parent parent;
 					parent = FXMLLoader.load(getClass().getResource("Boardlist.fxml"));
